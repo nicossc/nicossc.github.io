@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GMS Movil</title>
+  <link rel="icon" type="image/jpeg" href="portfolio/favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    header {
+      color: white;
+    }
+    .hero {
+      background-image: url('portfolio/fondo.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-shadow: 1px 1px 5px black;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1.5s ease-in-out;
+      background-attachment: fixed; /* Añadir efecto parallax */
+    }
+    .hero h1 {
+      font-size: 3rem;
+    }
+    .mapa {
+      height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mapa iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .servicio-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 15px;
+      vertical-align: middle;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+    .telefono {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #0d6efd;
+      cursor: pointer;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .servicio-container {
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+    .servicio-container:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    .servicio-container:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    .servicio-container:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    .servicio-img:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s ease;
+    }
+    /* Botón flotante */
+    .btn-flotante {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #0d6efd;
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .btn-flotante:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header class="p-3 mb-4 text-center bg-dark">
+    <h1>GMS Movil</h1>
+    <p>Tu tienda de confianza para reparación de móviles</p>
+  </header>
+
+  <section class="hero">
+    <div class="text-center">
+      <h1>¡Reparamos tu móvil en tiempo récord!</h1>
+      <p>Rápido, económico y profesional</p>
+      <a href="#contáctanos" class="btn btn-primary btn-lg">¡Solicita tu reparación ahora!</a>
+    </div>
+  </section>
+
+  <section class="container py-5">
+    <div class="row text-center">
+      <div class="col-md-4 servicio-container">
+        <h3><i class="bi bi-phone-vibrate"></i> Pantallas rotas</h3>
+        <p>Reemplazo de pantallas para todos los modelos más populares.</p>
+        <img src="portfolio/pantalla.jpg" alt="Pantallas rotas" class="servicio-img">
+      </div>
+      <div class="col-md-4 servicio-container">
+        <h3><i class="bi bi-battery-full"></i> Problemas de batería</h3>
+        <p>Cambiamos baterías defectuosas para mejorar el rendimiento.</p>
+        <img src="portfolio/bateria.jpg" alt="Problemas de batería" class="servicio-img">
+      </div>
+      <div class="col-md-4 servicio-container">
+        <h3><i class="bi bi-camera"></i> Otros fallos</h3>
+        <p>Solucionamos cualquier tipo de problema, como de carga, altavoz, cámara, etc.</p>
+        <img src="portfolio/camara.jpg" alt="Otros problemas" class="servicio-img">
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-light py-5" id="contáctanos">
+    <div class="container">
+      <h2 class="text-center mb-4">Contáctanos</h2>
+      <p class="text-center telefono" onclick="mostrarTelefono()">📞 697 99 28 44</p>
+    </div>
+  </section>
+
+  <section class="mapa">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2894.6987784531675!2d-6.114169487655773!3d43.48775626299432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd36a3d5e943a417%3A0x727b1c9bd9573530!2sGMS%20MOVIL!5e0!3m2!1ses!2ses!4v1744672360513!5m2!1ses!2ses" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <footer class="text-center py-4 bg-dark text-white mt-4">
+    <p class="mb-0">&copy; 2025 GMS Móvil. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Botón flotante -->
+  <a href="tel:+349697992844" class="btn-flotante">
+    <i class="bi bi-telephone-fill"></i>
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Función para mostrar una alerta cuando el usuario hace clic en el número de teléfono
+    function mostrarTelefono() {
+      alert('¡Llámanos ahora al 697 99 28 44 y solucionamos tu problema rápidamente!');
+    }
+  </script>
+</body>
+</html>
