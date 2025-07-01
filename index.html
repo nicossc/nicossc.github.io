@@ -91,13 +91,29 @@
     .btn-flotante:hover {
       background-color: #0056b3;
     }
+     .logo-img {
+    height: 50px;
+    width: auto;
+  }
+
+  @media (max-width: 576px) {
+    .logo-img {
+      height: 35px;
+    }
+  }
   </style>
 </head>
 <body>
-  <header class="p-3 mb-4 text-center bg-dark">
-    <h1>GMS Movil</h1>
-    <p>Tu tienda de confianza para reparación de móviles</p>
-  </header>
+  
+<header class="bg-dark text-white py-4 mb-4">
+  <div class="container text-center">
+    <h1 class="display-5 fw-bold d-flex justify-content-center align-items-center gap-3">
+      GMS Movil
+      <img src="imagenes_video/gmslogo.jpg" alt="Logo GMS" class="logo-img">
+    </h1>
+    <p class="lead mb-0">Tu tienda de confianza para reparación de móviles</p>
+  </div>
+</header>
 
   <section class="hero">
     <div class="text-center">
