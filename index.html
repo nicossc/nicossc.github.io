@@ -3,197 +3,809 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GMS Movil</title>
-  <link rel="icon" type="image/jpeg" href="imagenes_video/favicon.png">
+  <title>GMS Móvil — Reparación de Móviles y Tecnología en Pravia</title>
+  <meta name="description" content="GMS Móvil en Pravia: reparación de móviles y portátiles, instalación de cámaras de seguridad, marketing digital y diseño web. Rápido, económico y con garantía.">
+  <link rel="icon" type="image/png" href="imagenes_video/favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
   <style>
-    header {
-      color: white;
+    :root {
+      --primary:       #0f2d52;
+      --primary-light: #1a4a80;
+      --accent:        #f59e0b;
+      --accent-dark:   #d97706;
+      --dark:          #0a1929;
+      --light:         #f8fafc;
+      --text:          #334155;
+      --border:        #e2e8f0;
+      --radius:        12px;
     }
-    .hero {
-      background-image: url('imagenes_video/fondo.jpg');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      text-shadow: 1px 1px 5px black;
-      height: 60vh;
+
+    * { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ─────────────────────────────────────────────── */
+    .navbar {
+      background: transparent;
+      transition: background 0.4s, box-shadow 0.4s;
+      padding: 1rem 0;
+    }
+    .navbar.scrolled {
+      background: var(--dark) !important;
+      box-shadow: 0 2px 20px rgba(0,0,0,.4);
+      padding: .6rem 0;
+    }
+    .navbar-brand {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: .6rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: #fff !important;
+      letter-spacing: -.5px;
+    }
+    .navbar-brand img {
+      height: 38px;
+      width: auto;
+      border-radius: 6px;
+      object-fit: contain;
+    }
+    .navbar-brand span.accent { color: var(--accent); }
+    .nav-link {
+      color: rgba(255,255,255,.85) !important;
+      font-weight: 500;
+      font-size: .92rem;
+      letter-spacing: .3px;
+      transition: color .2s;
+      padding: .4rem .9rem !important;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--accent) !important; }
+    .navbar-toggler { border-color: rgba(255,255,255,.4); }
+    .navbar-toggler-icon { filter: invert(1); }
+
+    /* ── HERO ───────────────────────────────────────────────── */
+    .hero {
       position: relative;
-      overflow: hidden;
-      animation: fadeIn 1.5s ease-in-out;
-      background-attachment: fixed; /* Añadir efecto parallax */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: url('imagenes_video/fondo.jpg') center/cover no-repeat fixed;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,25,41,.85) 0%, rgba(15,45,82,.75) 60%, rgba(245,158,11,.18) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--dark);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: .35rem .9rem;
+      border-radius: 50px;
+      margin-bottom: 1.4rem;
     }
     .hero h1 {
-      font-size: 3rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,.4);
     }
-    .mapa {
-      height: 60vh;
+    .hero h1 .highlight { color: var(--accent); }
+    .hero p.lead {
+      color: rgba(255,255,255,.82);
+      font-size: 1.15rem;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+    .btn-cta {
+      background: var(--accent);
+      color: var(--dark);
+      font-weight: 700;
+      padding: .85rem 2rem;
+      border-radius: 50px;
+      border: none;
+      font-size: 1rem;
+      transition: transform .2s, box-shadow .2s, background .2s;
+      box-shadow: 0 6px 24px rgba(245,158,11,.4);
+      text-decoration: none;
+    }
+    .btn-cta:hover {
+      background: var(--accent-dark);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(245,158,11,.45);
+    }
+    .btn-outline-hero {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,.5);
+      font-weight: 600;
+      padding: .8rem 1.8rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .btn-outline-hero:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.5);
+      font-size: .8rem;
+      letter-spacing: 1px;
+      text-align: center;
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ── STATS BAR ──────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--primary);
+      padding: 2rem 0;
+    }
+    .stat-item { text-align: center; }
+    .stat-item .stat-number {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-item .stat-label {
+      font-size: .85rem;
+      color: rgba(255,255,255,.7);
+      font-weight: 400;
+    }
+    .stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,.15);
+      align-self: stretch;
+      margin: .5rem 0;
+    }
+
+    /* ── SECTION HEADINGS ───────────────────────────────────── */
+    .section-tag {
+      display: inline-block;
+      background: rgba(245,158,11,.12);
+      color: var(--accent-dark);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: .3rem .9rem;
+      border-radius: 50px;
+      margin-bottom: .9rem;
+      border: 1px solid rgba(245,158,11,.3);
+    }
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      color: #64748b;
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .title-line {
+      width: 52px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 4px;
+      margin: 1rem auto 0;
+    }
+
+    /* ── SERVICES ───────────────────────────────────────────── */
+    #servicios { background: var(--light); padding: 5rem 0; }
+
+    .service-card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,.07);
+      transition: transform .3s, box-shadow .3s;
+      height: 100%;
+      border: 1px solid var(--border);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(15,45,82,.14);
+    }
+    .service-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .service-card:hover .service-card-img { transform: scale(1.06); }
+    .service-card-img-wrap { overflow: hidden; }
+    .service-card-body {
+      padding: 1.4rem 1.5rem 1.6rem;
+    }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(245,158,11,.1);
+      border-radius: 10px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      margin-bottom: .9rem;
+      font-size: 1.3rem;
+      color: var(--accent-dark);
     }
-    .mapa iframe {
+    .service-card-body h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: .5rem;
+    }
+    .service-card-body p {
+      font-size: .92rem;
+      color: #64748b;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* ── WHY US ─────────────────────────────────────────────── */
+    #nosotros { padding: 5rem 0; background: #fff; }
+    .why-card {
+      padding: 2rem 1.5rem;
+      border-radius: var(--radius);
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .why-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(245,158,11,.12);
+    }
+    .why-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      font-size: 1.6rem;
+      color: #fff;
+    }
+    .why-card h4 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: .6rem;
+    }
+    .why-card p { font-size: .93rem; color: #64748b; margin: 0; line-height: 1.65; }
+
+    /* ── CONTACT + MAP ──────────────────────────────────────── */
+    #contacto { background: var(--light); padding: 5rem 0; }
+    .contact-box {
+      background: var(--primary);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.2rem;
+      height: 100%;
+      color: #fff;
+    }
+    .contact-box .section-title { color: #fff; }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .contact-item:last-of-type { border-bottom: none; }
+    .contact-item-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      background: rgba(245,158,11,.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      color: var(--accent);
+    }
+    .contact-item-text strong {
+      display: block;
+      font-size: .78rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: .2rem;
+    }
+    .contact-item-text a, .contact-item-text span {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+    }
+    .contact-item-text a:hover { color: var(--accent); }
+    .whatsapp-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      background: #25d366;
+      color: #fff !important;
+      font-weight: 700;
+      padding: .9rem 1.6rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background .2s, transform .2s;
+      margin-top: 1.6rem;
+    }
+    .whatsapp-btn:hover {
+      background: #1ebe5d;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .map-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      height: 100%;
+      min-height: 420px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.12);
+    }
+    .map-wrap iframe {
       width: 100%;
       height: 100%;
       border: 0;
+      display: block;
     }
-    .servicio-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-top: 15px;
-      vertical-align: middle;
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
-    .telefono {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #0d6efd;
-      cursor: pointer;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    .servicio-container {
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
-    .servicio-container:nth-child(1) {
-      animation-delay: 0.2s;
-    }
-    .servicio-container:nth-child(2) {
-      animation-delay: 0.4s;
-    }
-    .servicio-container:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-    .servicio-img:hover {
-      transform: scale(1.1);
-      transition: transform 0.3s ease;
-    }
-    /* Botón flotante */
-    .btn-flotante {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #0d6efd;
-      color: white;
-      border-radius: 50%;
-      padding: 15px;
-      font-size: 1.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .btn-flotante:hover {
-      background-color: #0056b3;
-    }
-     .logo-img {
-    height: 50px;
-    width: auto;
-  }
 
-  @media (max-width: 576px) {
-    .logo-img {
-      height: 35px;
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,.65);
+      padding: 2.2rem 0;
+      font-size: .9rem;
     }
-  }
+    footer .footer-brand {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+    footer .footer-brand span { color: var(--accent); }
+    footer a { color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s; }
+    footer a:hover { color: var(--accent); }
+
+    /* ── FLOATING WHATSAPP ──────────────────────────────────── */
+    .fab-whatsapp {
+      position: fixed;
+      bottom: 1.6rem;
+      right: 1.6rem;
+      z-index: 1000;
+      width: 58px;
+      height: 58px;
+      background: #25d366;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .fab-whatsapp::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid #25d366;
+      animation: pulse-ring 2s ease-out infinite;
+      opacity: 0;
+    }
+    .fab-whatsapp:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,.55); }
+    @keyframes pulse-ring {
+      0%   { transform: scale(1);   opacity: .6; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* ── SCROLL REVEAL ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+    .reveal-delay-4 { transition-delay: .4s; }
+    .reveal-delay-5 { transition-delay: .5s; }
+    .reveal-delay-6 { transition-delay: .6s; }
+
+    /* ── MISC ───────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .hero { background-attachment: scroll; min-height: 90vh; }
+      .stat-divider { display: none; }
+      .contact-box { margin-bottom: 2rem; }
+      .map-wrap { min-height: 320px; }
+    }
   </style>
 </head>
 <body>
-  
-<header class="bg-dark text-white py-4 mb-4">
-  <div class="container text-center">
-    <h1 class="display-5 fw-bold d-flex justify-content-center align-items-center gap-3">
-      GMS Movil
-      <img src="imagenes_video/gmslogo.jpg" alt="Logo GMS" class="logo-img">
-    </h1>
-    <p class="lead mb-0">Tu tienda de confianza para reparación de móviles</p>
-  </div>
-</header>
 
-  <section class="hero">
-    <div class="text-center">
-      <h1>¡Reparamos tu móvil en tiempo récord!</h1>
-      <p>Rápido, económico y profesional</p>
-      <a href="#contáctanos" class="btn btn-primary btn-lg">¡Solicita tu reparación ahora!</a>
-    </div>
-  </section>
-
-  <h2 class="text-center mt-4">Nuestros servicios</h2>
-  <section class="container py-5">
-    <div class="row text-center">
-
-      <div class="col-md-4 servicio-container mb-3">
-        <h3><i class="bi bi-phone-vibrate"> </i>Reparación de moviles</h3>
-        <p>Reparamos pantallas, baterías, conectores y más</p>
-        <img src="imagenes_video/movil.jpg" alt="Pantallas rotas" class="servicio-img">
-      </div>
-      
-      <div class="col-md-4 servicio-container">
-        <h3><i class="bi bi-laptop"></i> Reparación de portátiles</h3>
-        <p>Reparamos teclados, pantallas, disco duros, puertos y más</p>
-        <img src="imagenes_video/bateria.jpg" alt="Problemas de batería" class="servicio-img">
-      </div>
-
-      <div class="col-md-4 servicio-container">
-        <h3><i class="bi-graph-up-arrow"></i> Marketing Digital</h3>
-        <p>Servicios digitales para impulsar tu presencia online</p>
-        <img src="imagenes_video/marketing.jpg" alt="Marketing digital" class="servicio-img">
-      </div>
-
-       <div class="col-md-4 servicio-container">
-        <h3><i class="bi-brush"></i> Diseño publicitario</h3>
-        <p>Imagen y diseño para tu empresa</p>
-        <img src="imagenes_video/publicidad.jpg" alt="publicidad" class="servicio-img">
-      </div>
-
-       <div class="col-md-4 servicio-container">
-        <h3><i class="bi bi-camera"></i> Instalación cámaras</h3>
-        <p>Tú seguridad, nuestra prioridad</p>
-        <img src="imagenes_video/camaraseguridad.jpg" alt="Camaras de seguridad" class="servicio-img">
-      </div>
-
-       <div class="col-md-4 servicio-container">
-        <h3><i class="bi-display"></i> Diseño de páginas web</h3>
-        <p>Creamos sitios web modernos que destacan tu marca</p>
-        <img src="imagenes_video/html.jpg" alt="imagen con programacion" class="servicio-img">
-      </div>
-      
-    </div>
-  </section>
-
-  <section class="bg-light py-5" id="contáctanos">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
     <div class="container">
-      <h2 class="text-center mb-4">Contáctanos</h2>
-      <p class="text-center telefono" onclick="mostrarTelefono()">📞 697 99 28 44</p>
+      <a class="navbar-brand" href="#">
+        <img src="imagenes_video/gmslogo.jpg" alt="GMS Móvil">
+        GMS <span class="accent">Móvil</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav gap-1">
+          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+          <li class="nav-item ms-2">
+            <a class="btn-cta px-3 py-2" href="https://wa.me/34697992844?text=Hola,%20quiero%20pedir%20información%20sobre%20una%20reparación" target="_blank" style="font-size:.88rem;">
+              <i class="bi bi-whatsapp me-1"></i>WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container hero-content">
+      <div class="row">
+        <div class="col-lg-7">
+          <span class="hero-badge"><i class="bi bi-geo-alt-fill me-1"></i>Pravia, Asturias</span>
+          <h1>
+            Expertos en <span class="highlight">reparación</span><br>
+            y tecnología digital
+          </h1>
+          <p class="lead">
+            Móviles, portátiles, cámaras de seguridad, diseño web y marketing digital.
+            Soluciones rápidas, económicas y con garantía.
+          </p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#servicios" class="btn-cta">Ver nuestros servicios</a>
+            <a href="#contacto" class="btn-outline-hero">Contáctanos</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <i class="bi bi-chevron-down d-block fs-5"></i>
+      <span>Descubre más</span>
     </div>
   </section>
 
-  <section class="mapa">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2894.6987784531675!2d-6.114169487655773!3d43.48775626299432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd36a3d5e943a417%3A0x727b1c9bd9573530!2sGMS%20MOVIL!5e0!3m2!1ses!2ses!4v1744672360513!5m2!1ses!2ses" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="row justify-content-center align-items-center text-center g-0">
+        <div class="col-6 col-md-3 stat-item py-2">
+          <span class="stat-number">+500</span>
+          <span class="stat-label">Clientes satisfechos</span>
+        </div>
+        <div class="col-md-auto d-none d-md-block stat-divider"></div>
+        <div class="col-6 col-md-3 stat-item py-2">
+          <span class="stat-number">6</span>
+          <span class="stat-label">Servicios especializados</span>
+        </div>
+        <div class="col-md-auto d-none d-md-block stat-divider"></div>
+        <div class="col-6 col-md-3 stat-item py-2">
+          <span class="stat-number">24h</span>
+          <span class="stat-label">Reparaciones urgentes</span>
+        </div>
+        <div class="col-md-auto d-none d-md-block stat-divider"></div>
+        <div class="col-6 col-md-3 stat-item py-2">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Garantía en reparaciones</span>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer class="text-center py-4 bg-dark text-white mt-4">
-    <p class="mb-0">&copy; 2025 GMS Móvil. Todos los derechos reservados.</p>
+  <!-- SERVICES -->
+  <section id="servicios">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <span class="section-tag">Lo que hacemos</span>
+        <h2 class="section-title">Nuestros servicios</h2>
+        <div class="title-line"></div>
+        <p class="section-subtitle mt-3">
+          Ofrecemos soluciones tecnológicas completas para particulares y empresas en Pravia y alrededores.
+        </p>
+      </div>
+
+      <div class="row g-4">
+
+        <div class="col-sm-6 col-lg-4 reveal reveal-delay-1">
+          <div class="service-card">
+            <div class="service-card-img-wrap">
+              <img src="imagenes_video/movil.jpg" alt="Reparación de móviles" class="service-card-img">
+            </div>
+            <div class="service-card-body">
+              <div class="service-icon"><i class="bi bi-phone-vibrate"></i></div>
+              <h3>Reparación de móviles</h3>
+              <p>Pantallas, baterías, conectores de carga, cámaras y diagnóstico completo. Todas las marcas.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal reveal-delay-2">
+          <div class="service-card">
+            <div class="service-card-img-wrap">
+              <img src="imagenes_video/bateria.jpg" alt="Reparación de portátiles" class="service-card-img">
+            </div>
+            <div class="service-card-body">
+              <div class="service-icon"><i class="bi bi-laptop"></i></div>
+              <h3>Reparación de portátiles</h3>
+              <p>Teclados, pantallas, discos duros, puertos y mantenimiento completo del sistema.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal reveal-delay-3">
+          <div class="service-card">
+            <div class="service-card-img-wrap">
+              <img src="imagenes_video/camaraseguridad.jpg" alt="Cámaras de seguridad" class="service-card-img">
+            </div>
+            <div class="service-card-body">
+              <div class="service-icon"><i class="bi bi-camera-video"></i></div>
+              <h3>Instalación de cámaras</h3>
+              <p>Sistemas de videovigilancia para hogares y negocios. Tu seguridad, nuestra prioridad.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal reveal-delay-4">
+          <div class="service-card">
+            <div class="service-card-img-wrap">
+              <img src="imagenes_video/marketing.jpg" alt="Marketing digital" class="service-card-img">
+            </div>
+            <div class="service-card-body">
+              <div class="service-icon"><i class="bi bi-graph-up-arrow"></i></div>
+              <h3>Marketing digital</h3>
+              <p>Estrategias digitales para impulsar tu negocio: redes sociales, SEO y publicidad online.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal reveal-delay-5">
+          <div class="service-card">
+            <div class="service-card-img-wrap">
+              <img src="imagenes_video/publicidad.jpg" alt="Diseño publicitario" class="service-card-img">
+            </div>
+            <div class="service-card-body">
+              <div class="service-icon"><i class="bi bi-palette"></i></div>
+              <h3>Diseño publicitario</h3>
+              <p>Imagen corporativa, carteles, flyers y branding profesional para tu empresa.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4 reveal reveal-delay-6">
+          <div class="service-card">
+            <div class="service-card-img-wrap">
+              <img src="imagenes_video/html.jpg" alt="Diseño web" class="service-card-img">
+            </div>
+            <div class="service-card-body">
+              <div class="service-icon"><i class="bi bi-display"></i></div>
+              <h3>Diseño de páginas web</h3>
+              <p>Sitios web modernos, rápidos y adaptados a móviles que destacan tu marca online.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="nosotros">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <span class="section-tag">Por qué elegirnos</span>
+        <h2 class="section-title">Tu confianza, nuestra garantía</h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4 reveal reveal-delay-1">
+          <div class="why-card">
+            <div class="why-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+            <h4>Reparación rápida</h4>
+            <p>La mayoría de reparaciones se resuelven en el mismo día. Tu tiempo es valioso y lo sabemos.</p>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-delay-2">
+          <div class="why-card">
+            <div class="why-icon"><i class="bi bi-shield-check"></i></div>
+            <h4>Garantía incluida</h4>
+            <p>Todas nuestras reparaciones incluyen garantía. Si hay algún problema, lo solucionamos sin coste.</p>
+          </div>
+        </div>
+        <div class="col-md-4 reveal reveal-delay-3">
+          <div class="why-card">
+            <div class="why-icon"><i class="bi bi-currency-euro"></i></div>
+            <h4>Precio justo</h4>
+            <p>Presupuesto gratuito y sin sorpresas. Calidad profesional a precios accesibles para todos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT + MAP -->
+  <section id="contacto">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <span class="section-tag">Estamos en Pravia</span>
+        <h2 class="section-title">Contáctanos</h2>
+        <div class="title-line"></div>
+      </div>
+      <div class="row g-4 align-items-stretch">
+
+        <div class="col-lg-5 reveal reveal-delay-1">
+          <div class="contact-box">
+            <h3 class="section-title mb-1">¿Tienes algún problema?</h3>
+            <p style="color:rgba(255,255,255,.65);font-size:.95rem;margin-bottom:1.5rem;">
+              Estamos aquí para ayudarte. Llámanos, escríbenos o visítanos directamente.
+            </p>
+
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="bi bi-telephone-fill"></i></div>
+              <div class="contact-item-text">
+                <strong>Teléfono</strong>
+                <a href="tel:+34697992844">697 99 28 44</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="bi bi-whatsapp"></i></div>
+              <div class="contact-item-text">
+                <strong>WhatsApp</strong>
+                <a href="https://wa.me/34697992844" target="_blank">Escríbenos ahora</a>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="bi bi-geo-alt-fill"></i></div>
+              <div class="contact-item-text">
+                <strong>Ubicación</strong>
+                <span>Pravia, Asturias</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-item-icon"><i class="bi bi-clock-fill"></i></div>
+              <div class="contact-item-text">
+                <strong>Horario</strong>
+                <span>Lun–Vie 9:00–20:00 · Sáb 10:00–14:00</span>
+              </div>
+            </div>
+
+            <a href="https://wa.me/34697992844?text=Hola,%20quiero%20pedir%20información%20sobre%20una%20reparación"
+               class="whatsapp-btn" target="_blank">
+              <i class="bi bi-whatsapp fs-5"></i>
+              Chatear por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-7 reveal reveal-delay-2">
+          <div class="map-wrap">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2894.6987784531675!2d-6.114169487655773!3d43.48775626299432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd36a3d5e943a417%3A0x727b1c9bd9573530!2sGMS%20MOVIL!5e0!3m2!1ses!2ses!4v1744672360513!5m2!1ses!2ses"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación de GMS Móvil en Pravia">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="row align-items-center g-3">
+        <div class="col-md-4 text-center text-md-start">
+          <span class="footer-brand">GMS <span>Móvil</span></span>
+        </div>
+        <div class="col-md-4 text-center">
+          <p class="mb-0">&copy; 2025 GMS Móvil · Pravia, Asturias</p>
+        </div>
+        <div class="col-md-4 text-center text-md-end">
+          <a href="tel:+34697992844" class="me-3"><i class="bi bi-telephone me-1"></i>697 99 28 44</a>
+          <a href="https://wa.me/34697992844" target="_blank"><i class="bi bi-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
   </footer>
 
- <!-- Botón flotante de WhatsApp -->
-<a href="https://wa.me/34697993844?text=Hola,%20quiero%20pedir%20información%20sobre%20una%20reparación" 
-   class="btn-flotante" target="_blank" aria-label="Escríbenos por WhatsApp">
-  <i class="bi bi-whatsapp"></i>
-</a>
-
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/34697992844?text=Hola,%20quiero%20pedir%20información%20sobre%20una%20reparación"
+     class="fab-whatsapp" target="_blank" aria-label="Escríbenos por WhatsApp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Función para mostrar una alerta cuando el usuario hace clic en el número de teléfono
-    function mostrarTelefono() {
-      alert('¡Llámanos ahora al 697 99 28 44 y solucionamos tu problema rápidamente!');
-    }
+    // Navbar on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Scroll reveal with IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        const collapse = document.getElementById('navMenu');
+        if (collapse.classList.contains('show')) {
+          bootstrap.Collapse.getInstance(collapse)?.hide();
+        }
+      });
+    });
   </script>
 </body>
 </html>
